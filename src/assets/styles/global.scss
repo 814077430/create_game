@@ -1,0 +1,201 @@
+:root {
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --bg-dark: #0a0a12;
+  --bg-canvas: #0f0f1a;
+  --bg-card: rgba(22, 22, 38, 0.95);
+  --bg-surface: #252540;
+  --bg-elevated: #2d2d4a;
+  --bg-subtle: rgba(255, 255, 255, 0.05);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #2a2a45;
+  --border-active: #6366f1;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #06b6d4;
+  --stage-1: #f59e0b;
+  --stage-2: #06b6d4;
+  --stage-3: #8b5cf6;
+  --stage-4: #10b981;
+  --stage-5: #ef4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, #app {
+  width: 100%; height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: var(--bg-surface); border-radius: 3px; }
+
+.el-button--primary {
+  --el-button-bg-color: var(--primary);
+  --el-button-border-color: var(--primary);
+}
+
+.el-tag {
+  border-color: transparent;
+}
+
+.el-dialog {
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+
+  .el-dialog__title { color: var(--text-primary); }
+  .el-dialog__body { color: var(--text-secondary); }
+}
+
+/* ── 暗色 MessageBox（全局默认：confirm / alert / prompt 一律走平台风格）──── */
+.el-message-box {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  padding: 20px 22px 18px;
+  --el-messagebox-title-color: var(--text-primary);
+  --el-messagebox-content-color: var(--text-secondary);
+
+  .el-message-box__header { padding-bottom: 12px; }
+
+  .el-message-box__title {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .el-message-box__headerbtn .el-message-box__close { color: var(--text-muted); }
+  .el-message-box__headerbtn:hover .el-message-box__close { color: var(--text-primary); }
+
+  .el-message-box__status {
+    &.el-message-box__status--warning { color: var(--warning); }
+    &.el-message-box__status--error { color: var(--danger); }
+    &.el-message-box__status--success { color: var(--success); }
+    &.el-message-box__status--info { color: var(--info); }
+  }
+
+  .el-message-box__content { color: var(--text-secondary); padding-top: 4px; }
+  .el-message-box__message p { color: var(--text-secondary); line-height: 1.7; }
+
+  /* prompt 输入框 */
+  .el-message-box__input {
+    padding-top: 14px;
+
+    .el-input__wrapper,
+    .el-textarea__inner {
+      background: var(--bg-subtle);
+      box-shadow: 0 0 0 1px var(--border-color) inset;
+      color: var(--text-primary);
+
+      &:hover { box-shadow: 0 0 0 1px var(--border-active) inset; }
+      &.is-focus { box-shadow: 0 0 0 1px var(--border-active) inset; }
+    }
+    .el-input__inner { color: var(--text-primary); }
+    .el-input__inner::placeholder,
+    .el-textarea__inner::placeholder { color: var(--text-muted); }
+  }
+
+  .el-message-box__errormsg { color: var(--danger); }
+
+  .el-message-box__btns {
+    padding-top: 18px;
+
+    .el-button {
+      background: var(--bg-surface);
+      border-color: var(--border-color);
+      color: var(--text-secondary);
+      border-radius: 8px;
+
+      &:hover { color: var(--text-primary); border-color: var(--border-active); }
+    }
+
+    .el-button--primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+
+      &:hover { background: var(--primary-light); border-color: var(--primary-light); }
+    }
+
+    .el-button--danger {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+
+      &:hover { background: #f87171; border-color: #f87171; }
+    }
+  }
+}
+
+/* ── 暗色 Message（轻提示）───────────────────────────────────── */
+.el-message {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  .el-message__content { color: var(--text-primary); }
+  .el-message__closeBtn { color: var(--text-muted); &:hover { color: var(--text-primary); } }
+
+  &.el-message--success .el-message__icon { color: var(--success); }
+  &.el-message--warning .el-message__icon { color: var(--warning); }
+  &.el-message--error .el-message__icon { color: var(--danger); }
+  &.el-message--info .el-message__icon { color: var(--info); }
+}
+
+/* 遮罩统一压暗，避免默认灰白遮罩破坏暗色氛围 */
+.el-overlay { background: rgba(5, 5, 12, 0.6); }
+
+/* ── 确认弹窗统一内容结构（dangerouslyUseHTMLString 时使用）───────── */
+.el-message-box {
+  .gf-confirm { font-size: 13px; line-height: 1.7; }
+  .gf-confirm__main { color: var(--text-primary); }
+  .gf-confirm__main b { color: var(--warning); }
+  .gf-confirm__tip {
+    margin-top: 10px;
+    padding: 9px 11px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .gf-confirm__tip b { color: var(--text-secondary); }
+}
+
+.gf-dark-messagebox.el-message-box {
+  .gf-asset-warn {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .gf-asset-warn__head { color: var(--text-primary); margin-bottom: 12px; }
+  .gf-asset-warn__head b { color: var(--warning); }
+  .gf-asset-warn__list {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-height: 180px;
+    overflow-y: auto;
+  }
+  .gf-asset-warn__tip {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .gf-asset-warn__tip b { color: var(--text-secondary); }
+}

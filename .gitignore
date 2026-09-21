@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+.npm/
+
+# Build output
+dist/
+.vite/
+
+# Logs
+*.log
+vite.log
+
+# Generated / published game data
+game-output/
+game-show/
+
+# Credentials & user data
+users.json
+
+# OS / editor
+.DS_Store
+*.swp
